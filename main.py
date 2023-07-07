@@ -27,24 +27,25 @@ print('Результат', end="")
 while True:
     event, values = window.read()
     if event == g.WIN_CLOSED:
-        exit(0)
+        break
     if event == '-INPUT1-':
-        if values['-INPUT1-'] != None and values['-INPUT1-'][-1] not in ('0123456789'):
+        if values['-INPUT1-'] == None or values['-INPUT1-'][-1] not in ('0123456789'):
             g.popup("Only digits allowed")
             window['-INPUT1-'].update(values['-INPUT1-'][:-1])
     if event == '-INPUT2-':
-        if values['-INPUT2-'] != None and values['-INPUT2-'][-1] not in ('0123456789'):
+        if values['-INPUT2-'] == "" or values['-INPUT2-'][-1] not in ('0123456789'):
             g.popup("Only digits allowed")
             window['-INPUT2-'].update(values['-INPUT2-'][:-1])
     if event == 'Input_1':
-        if values['-Input_1-'] != None and values['Input_1'][-1] not in ('0123456789'):
+        if values['-Input_1-'] == "" or values['Input_1'][-1] not in ('0123456789'):
             g.popup("Only digits allowed")
             window['Input_1'].update(values['Input_1'][:-1])
     if event == 'Input_2':
-        if values['-Input_2-'] != None and values['Input_2'][-1] not in ('0123456789'):
+        if values['-Input_2-'] == "" or values['Input_2'][-1] not in ('0123456789'):
             g.popup("Only digits allowed")
             window['Input_2'].update(values['Input_2'][:-1])
     if event == '-COUNT-':
         n = neuro.Neuron(np.array([int(values['Input_1']), int(values['Input_2'])]), 4)
         print('\nРезультат: ', n.feedforward(np.array([int(values['-INPUT1-']), int(values['-INPUT2-'])])), end="")
 window.close()
+exit(0)

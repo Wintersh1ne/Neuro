@@ -1,15 +1,19 @@
 import PySimpleGUI as g
 
+import neuro
+
 ic = 'mai.ico'
 
 g.theme('default1')
 
 layout_1 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОНА', justification='center', expand_x=True, font='Impact 30 normal')],
-            [g.Input('2', tooltip='Например 2', size=(13, 1), justification='center', pad=(213, 5))],
+            [g.Input('2', enable_events=True, key='-INPUT1-', tooltip='Например 2', size=(13, 1), justification='center', pad=(213, 5))],
             [g.Image(source='neuron.png')],
-            [g.Input('3', tooltip='Например 3', size=(13, 1), justification='center', pad=(213, 5))],
-            [g.Button('Посчитать'), g.Output(expand_x=True)],
-            [g.StatusBar('НИЖНИЙ ТЕКСТ', justification='center', expand_x=True, font='Impact 30 normal')]]
+            [g.Input('3', enable_events=True, key='-INPUT2-', tooltip='Например 3', size=(13, 1), justification='center', pad=(213, 5))],
+            [g.Button('Посчитать', enable_events=True, key='-COUNT-',), g.Output(expand_x=True)],
+            [g.StatusBar('НИЖНИЙ ТЕКСТ', justification='center', expand_x=True, font='Impact 30 normal')],
+            [g.Input('0', size=(13, 1), justification='left', key='Input_1', enable_events=True)],
+            [g.Input('1', size=(13, 1), justification='left', key='Input_2', enable_events=True)]]
 
 layout_2 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОСЕТИ', justification='center', expand_x=True, font='Impact 30 normal')],
             [g.Image(source='image.png')],
@@ -19,10 +23,20 @@ layout_2 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОСЕТИ', justificatio
 layout_0 = [[g.TabGroup([[g.Tab('Нейрон', layout_1), g.Tab('Сеть', layout_2)]])]]
 window = g.Window('Нейросети', layout_0, finalize=True, icon=ic)
 
-print('Результат')
+print('Результат', end="")
 while True:
     event, values = window.read()
     if event == g.WIN_CLOSED:
         break
-    print('Результат')
+    if event == '-INPUT1-':
+        if values['-INPUT1-'][-1] not in ('0123456789'):
+            g.popup("Only digits allowed")
+            window['-INPUT1-'].update(values['-INPUT1-'][:-1])
+    if event == '-INPUT2-':
+        if values['-INPUT2-'][-1] not in ('0123456789'):
+            g.popup("Only digits allowed")
+            window['-INPUT2-'].update(values['-INPUT2-'][:-1])
+    if event == 'COUNT-':
+        True
+    print('\nРезультат: ', end="")
 window.close()

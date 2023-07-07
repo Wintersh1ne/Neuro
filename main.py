@@ -36,6 +36,14 @@ while True:
         if values['-INPUT2-'][-1] not in ('0123456789'):
             g.popup("Only digits allowed")
             window['-INPUT2-'].update(values['-INPUT2-'][:-1])
+    if event == 'Input_1':
+        if values['Input_1'][-1] not in ('0123456789'):
+            g.popup("Only digits allowed")
+            window['Input_1'].update(values['Input_1'][:-1])
+    if event == 'Input_2':
+        if values['Input_2'][-1] not in ('0123456789'):
+            g.popup("Only digits allowed")
+            window['Input_2'].update(values['Input_2'][:-1])
     if event == 'COUNT-':
         True
     print('\nРезультат: ', end="")

@@ -24,7 +24,7 @@ layout_2 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОСЕТИ', justificatio
 layout_0 = [[g.TabGroup([[g.Tab('Нейрон', layout_1), g.Tab('Сеть', layout_2)]])]]
 window = g.Window('Нейросети', layout_0, finalize=True, icon=ic)
 
-print('Результат', end="")
+
 while True:
     event, values = window.read()
     if event == g.WIN_CLOSED:

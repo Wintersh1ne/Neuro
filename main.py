@@ -22,8 +22,8 @@ layout_2 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОСЕТИ', justificatio
             [g.FileBrowse('Выбрать файл'), g.FileSaveAs('Сохранить как'), g.Button('Настроить', enable_events=True, key='Parametrize')]]
 
 layout_3 = [[g.Text('ПАРАМЕТРЫ НЕЙРОСЕТИ', justification='center', expand_x=True, font='Impact 30 normal')],
-            [g.Text('x: '), g.Input()],
-            [g.Text('y: '), g.Input()],
+            [g.Text('x: '), g.Input('0', enable_events=True, key='Input_x')],
+            [g.Text('y: '), g.Input('1', enable_events=True, key='Input_y')],
             [],
             [g.Button('Return', enable_events=True, key='return')]]
 
@@ -98,6 +98,18 @@ while True:
                 window_params.disappear()
                 window.reappear()
                 break
+            if event_p == 'Input_x':
+                if len(values_p['Input_x']) == 1 and values_p['Input_x'][0] not in ('0123456789'):
+                    g.popup("Only digits allowed")
+                    window_params['Input_x'].update("")
+                if len(values_p['Input_x']) > 1:
+                    if values_p['Input_x'][-1] not in ('0123456789'):
+                        g.popup("Only digits allowed")
+                        window_params['Input_x'].update(values_p['Input_x'][:-1])
+                    if values_p['Input_x'][0] not in ('0123456789'):
+                        g.popup("Only digits allowed")
+                        window_params['Input_x'].update(values_p['Input_x'][1:])
+
 
 
 window.close()

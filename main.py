@@ -110,6 +110,6 @@ while True:
                     if values_p['Input_x'][0] not in ('0123456789'):
                         g.popup("Only digits allowed")
                         window_params['Input_x'].update(values_p['Input_x'][1:])
-                        
+
 window.close()
 exit(0)

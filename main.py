@@ -29,7 +29,7 @@ layout_3 = [[g.Text('ПАРАМЕТРЫ НЕЙРОСЕТИ', justification='cent
 
 layout_0 = [[g.TabGroup([[g.Tab('Нейрон', layout_1), g.Tab('Сеть', layout_2)]])]]
 window = g.Window('Нейросети', layout_0, finalize=True, icon=ic)
-window_params = g.Window('Нейросети', layout_3, finalize=True, icon=ic)
+window_params = g.Window('Нейросети', layout_3, finalize=True, icon=ic, enable_close_attempted_event=True)
 window_params.disappear()
 
 

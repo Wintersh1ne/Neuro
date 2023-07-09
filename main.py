@@ -19,10 +19,18 @@ layout_1 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОНА', justification='c
 layout_2 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОСЕТИ', justification='center', expand_x=True, font='Impact 30 normal')],
             [g.Image(source='image.png')],
             [],
-            [g.FileBrowse('Выбрать файл'), g.FileSaveAs('Сохранить как')]]
+            [g.FileBrowse('Выбрать файл'), g.FileSaveAs('Сохранить как'), g.Button('Настроить', enable_events=True, key='Parametrize')]]
+
+layout_3 = [[g.Text('ПАРАМЕТРЫ НЕЙРОСЕТИ', justification='center', expand_x=True, font='Impact 30 normal')],
+            [g.Text('x: '), g.Input()],
+            [g.Text('y: '), g.Input()],
+            [],
+            [g.Button('Return', enable_events=True, key='return')]]
 
 layout_0 = [[g.TabGroup([[g.Tab('Нейрон', layout_1), g.Tab('Сеть', layout_2)]])]]
 window = g.Window('Нейросети', layout_0, finalize=True, icon=ic)
+window_params = g.Window('Нейросети', layout_3, finalize=True, icon=ic)
+window_params.disappear()
 
 
 while True:
@@ -80,5 +88,17 @@ while True:
             print('\nРезультат: ', n.feedforward(np.array([int(layout_1[1][1].get()), int(layout_1[3][1].get())])), end="")
         except:
             g.popup("Check all parametres. They must be digitals for sure!")
+
+    if event == 'Parametrize':
+        window.disappear()
+        window_params.reappear()
+        while True:
+            event_p, values_p = window_params.read()
+            if event_p == 'return':
+                window_params.disappear()
+                window.reappear()
+                break
+
+
 window.close()
 exit(0)

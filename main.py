@@ -37,50 +37,15 @@ while True:
     event, values = window.read()
     if event == g.WIN_CLOSED:
         break
-    if event == '-INPUT1-':
-        if values['-INPUT1-'] != "":
-            if values['-INPUT1-'][0] not in ('-0123456789'):
-                g.popup("Only digits allowed")
-                window['-INPUT1-'].update(values['-INPUT1-'][1:])
-            elif len(values['-INPUT1-']) > 1 and values['-INPUT1-'][-1] not in ('0123456789'):
-                g.popup("Only digits allowed")
-                window['-INPUT1-'].update(values['-INPUT1-'][:-1])
 
-    if event == '-INPUT2-':
-        if values['-INPUT2-'] != "":
-            if values['-INPUT2-'][0] not in ('-0123456789'):
+    if event in ['-INPUT1-', '-INPUT2-', 'Input_1', 'Input_2', 'bias']:
+        if values[event] != "":
+            if values[event][0] not in ('-0123456789'):
                 g.popup("Only digits allowed")
-                window['-INPUT2-'].update(values['-INPUT2-'][1:])
-            elif len(values['-INPUT2-']) > 1 and values['-INPUT2-'][-1] not in ('0123456789'):
+                window[event].update(values[event][1:])
+            elif len(values[event]) > 1 and values[event][-1] not in ('0123456789'):
                 g.popup("Only digits allowed")
-                window['-INPUT2-'].update(values['-INPUT2-'][:-1])
-
-    if event == 'Input_1':
-        if values['Input_1'] != "":
-            if values['Input_1'][0] not in ('-0123456789'):
-                g.popup("Only digits allowed")
-                window['Input_1'].update(values['Input_1'][1:])
-            elif len(values['Input_1']) > 1 and values['Input_1'][-1] not in ('0123456789'):
-                g.popup("Only digits allowed")
-                window['Input_1'].update(values['Input_1'][:-1])
-
-    if event == 'Input_2':
-        if values['Input_2'] != "":
-            if values['Input_2'][0] not in ('-0123456789'):
-                g.popup("Only digits allowed")
-                window['Input_2'].update(values['Input_2'][1:])
-            elif len(values['Input_2']) > 1 and values['Input_2'][-1] not in ('0123456789'):
-                g.popup("Only digits allowed")
-                window['Input_2'].update(values['Input_2'][:-1])
-
-    if event == 'bias':
-        if values['bias'] != "":
-            if values['bias'][0] not in ('-0123456789'):
-                g.popup("Only digits allowed")
-                window['bias'].update(values['bias'][1:])
-            elif len(values['bias']) > 1 and values['bias'][-1] not in ('0123456789'):
-                g.popup("Only digits allowed")
-                window['bias'].update(values['bias'][:-1])
+                window[event].update(values[event][:-1])
 
     if event == '-COUNT-':
         try:
@@ -99,17 +64,17 @@ while True:
                 window.reappear()
                 break
 
-            if event_p == 'Input_x':
-                if len(values_p['Input_x']) == 1 and values_p['Input_x'][0] not in ('0123456789'):
+            if event_p in ['Input_x', 'Input_y']:
+                if len(values_p[event_p]) == 1 and values_p[event_p][0] not in ('0123456789'):
                     g.popup("Only digits allowed")
-                    window_params['Input_x'].update("")
-                if len(values_p['Input_x']) > 1:
-                    if values_p['Input_x'][-1] not in ('0123456789'):
+                    window_params[event_p].update("")
+                if len(values_p[event_p]) > 1:
+                    if values_p[event_p][-1] not in ('0123456789'):
                         g.popup("Only digits allowed")
-                        window_params['Input_x'].update(values_p['Input_x'][:-1])
-                    if values_p['Input_x'][0] not in ('0123456789'):
+                        window_params[event_p].update(values_p['Input_x'][:-1])
+                    if values_p[event_p][0] not in ('0123456789'):
                         g.popup("Only digits allowed")
-                        window_params['Input_x'].update(values_p['Input_x'][1:])
+                        window_params[event_p].update(values_p[event_p][1:])
 
 window.close()
 exit(0)

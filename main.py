@@ -9,7 +9,7 @@ g.theme('default1')
 layout_1 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОНА', justification='center', expand_x=True, font='Impact 30 normal')],
             [g.Input('0', enable_events=True, key='Input_1',  tooltip='Например 0', size=(5, 1), justification='center', pad=(60, 5)),
              g.Input('2', enable_events=True, key='-INPUT1-', tooltip='Например 2', size=(5, 1), justification='center', pad=(165, 5))],
-            [g.Input('4', enable_events=True, key='bias',     tooltip='Например 2', size=(5, 1),  justification='center'),
+            [g.Input('4', enable_events=True, key='bias',     tooltip='Например 4', size=(5, 1),  justification='center'),
              g.Image(source='neuron.png')],
             [g.Input('1', enable_events=True, key='Input_2',  tooltip='Например 1', size=(5, 1), justification='center', pad=(60, 5)),
              g.Input('3', enable_events=True, key='-INPUT2-', tooltip='Например 3', size=(5, 1), justification='center', pad=(165, 5))],
@@ -22,8 +22,8 @@ layout_2 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОСЕТИ', justificatio
             [g.FileBrowse('Выбрать файл'), g.FileSaveAs('Сохранить как'), g.Button('Настроить', enable_events=True, key='Parametrize')]]
 
 layout_3 = [[g.Text('ПАРАМЕТРЫ НЕЙРОСЕТИ', justification='center', expand_x=True, font='Impact 30 normal')],
-            [g.Text('x: '), g.Input('0', enable_events=True, key='Input_x', size=(5, 1), justification='center'), g.Text('weight: '), g.Input('2', enable_events=True, key='Input_weight_x', size=(15, 1), justification='center')],
-            [g.Text('y: '), g.Input('1', enable_events=True, key='Input_y', size=(5, 1), justification='center'), g.Text('weight: '), g.Input('3', enable_events=True, key='Input_weight_y', size=(15, 1), justification='center')],
+            [g.Text('x: '), g.Input('0', enable_events=True, key='Input_x', tooltip='Например 0',size=(5, 1), justification='center'), g.Text('weight: '), g.Input('2', enable_events=True, key='Input_weight_x', tooltip='Например 2',size=(15, 1), justification='center')],
+            [g.Text('y: '), g.Input('1', enable_events=True, key='Input_y', tooltip='Например 1',size=(5, 1), justification='center'), g.Text('weight: '), g.Input('3', enable_events=True, key='Input_weight_y', tooltip='Например 3',size=(15, 1), justification='center')],
             [],
             [g.Button('Return', enable_events=True, key='return')]]
 

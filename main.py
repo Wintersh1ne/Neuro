@@ -22,8 +22,8 @@ layout_2 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОСЕТИ', justificatio
             [g.FileBrowse('Выбрать файл'), g.FileSaveAs('Сохранить как'), g.Button('Настроить', enable_events=True, key='Parametrize')]]
 
 layout_3 = [[g.Text('ПАРАМЕТРЫ НЕЙРОСЕТИ', justification='center', expand_x=True, font='Impact 30 normal')],
-            [g.Text('x: '), g.Input('0', enable_events=True, key='Input_x')],
-            [g.Text('y: '), g.Input('1', enable_events=True, key='Input_y')],
+            [g.Text('x: '), g.Input('0', enable_events=True, key='Input_x', size=(5, 1), justification='center'), g.Text('weight: '), g.Input('2', enable_events=True, key='Input_weight_x', size=(15, 1), justification='center')],
+            [g.Text('y: '), g.Input('1', enable_events=True, key='Input_y', size=(5, 1), justification='center'), g.Text('weight: '), g.Input('3', enable_events=True, key='Input_weight_y', size=(15, 1), justification='center')],
             [],
             [g.Button('Return', enable_events=True, key='return')]]
 
@@ -64,7 +64,7 @@ while True:
                 window.reappear()
                 break
 
-            if event_p in ['Input_x', 'Input_y']:
+            if event_p in ['Input_x', 'Input_y', 'Input_weight_x', 'Input_weight_y']:
                 if len(values_p[event_p]) == 1 and values_p[event_p][0] not in ('0123456789'):
                     g.popup("Only digits allowed")
                     window_params[event_p].update("")

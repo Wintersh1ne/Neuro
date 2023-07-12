@@ -63,7 +63,6 @@ while True:
                 window_params.disappear()
                 window.reappear()
                 break
-
             if event_p in ['Input_x', 'Input_y', 'Input_weight_x', 'Input_weight_y']:
                 if len(values_p[event_p]) == 1 and values_p[event_p][0] not in ('0123456789'):
                     g.popup("Only digits allowed")

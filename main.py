@@ -55,13 +55,14 @@ while True:
             g.popup("Check all parametres. They must be digitals for sure!")
 
     if event == 'Parametrize':
-        window.disappear()
+        window.disable()
         window_params.reappear()
+        window_params.force_focus()
         while True:
             event_p, values_p = window_params.read()
             if event_p == 'return':
                 window_params.disappear()
-                window.reappear()
+                window.enable()
                 break
             if event_p in ['Input_x', 'Input_y', 'Input_weight_x_1', 'Input_weight_x_2', 'Input_weight_y_1', 'Input_weight_y_2']:
                 if len(values_p[event_p]) == 1 and values_p[event_p][0] not in ('0123456789'):

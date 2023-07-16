@@ -19,7 +19,7 @@ layout_1 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОНА', justification='c
 layout_2 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОСЕТИ', justification='center', expand_x=True, font='Impact 30 normal')],
             [g.Image(source='image.png')],
             [],
-            [g.FileBrowse('Выбрать файл'), g.FileSaveAs('Сохранить как'), g.Button('Настроить', enable_events=True, key='Parametrize')],
+            [g.Button('Настроить', enable_events=True, key='Parametrize')],
             [g.Button('Посчитать', enable_events=True, key='count',), g.Output(expand_x=True)]]
 
 layout_3 = [[g.Text('ПАРАМЕТРЫ НЕЙРОСЕТИ', justification='center', expand_x=True, font='Impact 30 normal')],

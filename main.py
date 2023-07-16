@@ -19,7 +19,8 @@ layout_1 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОНА', justification='c
 layout_2 = [[g.Text('ПРИМЕР РАБОТЫ НЕЙРОСЕТИ', justification='center', expand_x=True, font='Impact 30 normal')],
             [g.Image(source='image.png')],
             [],
-            [g.FileBrowse('Выбрать файл'), g.FileSaveAs('Сохранить как'), g.Button('Настроить', enable_events=True, key='Parametrize')]]
+            [g.FileBrowse('Выбрать файл'), g.FileSaveAs('Сохранить как'), g.Button('Настроить', enable_events=True, key='Parametrize')],
+            [g.Button('Посчитать', enable_events=True, key='count',), g.Output(expand_x=True)]]
 
 layout_3 = [[g.Text('ПАРАМЕТРЫ НЕЙРОСЕТИ', justification='center', expand_x=True, font='Impact 30 normal')],
             [g.Text('x:   '), g.Input('0', enable_events=True, key='Input_x', tooltip='Например 0', size=(5, 1), justification='center'), g.Text('weight 1: '), g.Input('2', enable_events=True, key='Input_weight_x_1', tooltip='Например 2', size=(15, 1), justification='center'), g.Text('weight 3: '), g.Input('2', enable_events=True, key='Input_weight_x_2', tooltip='Например 2', size=(15, 1), justification='center')],
@@ -56,6 +57,13 @@ while True:
         except:
             g.popup("Check all parametres. They must be digitals for sure!")
 
+    if event == 'count':        #дописать
+        try:
+            nw = neuro.OurNeuralNetwork(2, 3)
+            nw.train()
+        except:
+            g.popup("Check all parametres. They must be digitals for sure!")
+
     if event == 'Parametrize':
         window.disable()
         window_params.reappear()
@@ -63,13 +71,8 @@ while True:
         while True:
             event_p, values_p = window_params.read()
             if event_p == 'save_and_return':
-                try:
-                    window_params.disappear()
-                    window.enable()
-                    n = neuro.Neuron(np.array([int(layout_1[1][0].get()), int(layout_1[3][0].get())]), int(layout_1[2][0].get()))
-                    print('\nРезультат: ', n.feedforward(np.array([int(layout_1[1][1].get()), int(layout_1[3][1].get())])), end="")
-                except:
-                    g.popup("Check all parametres. They must be digitals for sure!")
+                window_params.disappear()
+                window.enable()
                 break
             if event_p in ['Input_x', 'Input_y', 'Input_b1', 'Input_b2', 'Input_b3', 'Input_weight_x_1', 'Input_weight_x_2', 'Input_weight_y_1', 'Input_weight_y_2', 'Input_weight_b1', 'Input_weight_b2']:
                 if len(values_p[event_p]) == 1 and values_p[event_p][0] not in ('0123456789'):

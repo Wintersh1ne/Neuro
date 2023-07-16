@@ -29,23 +29,19 @@ class Neuron:
 
 
 class OurNeuralNetwork:
-    def __init__(self, w_count_in, b_count):
+    def __init__(self, w_count_in, b_count, w, b):
         self.w_count_in = w_count_in
         self.w_count = w_count_in * (b_count - 1) + b_count - 1
         self.w = []
         self.b = []
+        self.w = w
+        self.b = b
         self.h = [0] * (b_count - 1)
         self.d_ypred_d_h = [0] * len(self.h)
         self.d_ypred_d_w = [0] * len(self.h)
         self.d_ypred_d_b = 0
         self.d_h_d_w = [0] * len(self.h) * w_count_in
         self.d_h_d_b = [0] * len(self.h)
-
-        for i in range(0, self.w_count):
-            self.w.append(np.random.normal())
-
-        for i in range(0, b_count):
-            self.b.append(np.random.normal())
 
     def feedforward(self, x):
         k = 0
@@ -126,46 +122,3 @@ class OurNeuralNetwork:
                     self.w[i] -= learn_rate * d_L_d_ypred * self.d_ypred_d_w[j]
                     j += 1
                 self.b[-1] -= learn_rate * d_L_d_ypred * d_ypred_d_b
-
-            # --- Подсчитываем общую потерю в конце каждой фазы
-            if epoch % 10 == 0:
-                y_preds = np.apply_along_axis(self.feedforward, 1, data)
-                loss = mse_loss(all_y_trues, y_preds)
-                print(f"Epoch {epoch} loss: {loss}")
-
-
-
-'''
-
-
-print(n.feedforward(x))  # 0.9990889488055994
-
-
-
-
-
-# Определение набора данных
-data = np.array([
-    [-2, -1],  # Alice
-    [25, 6],  # Bob
-    [17, 4],  # Charlie
-    [-15, -6],  # Diana
-])
-
-all_y_trues = np.array([
-    1,  # Alice
-    0,  # Bob
-    0,  # Charlie
-    1,  # Diana
-])
-
-# Тренируем нашу нейронную сеть!
-network = OurNeuralNetwork(2, 3)
-network.train(data, all_y_trues)
-
-emily = np.array([-7, -3])
-frank = np.array([20, 2])
-print("Emily: %.9f" % network.feedforward(emily))  # 0.951 - F
-print("Frank: %.9f" % network.feedforward(frank))  # 0.039 - M
-input("Press any key to exit...")
-'''

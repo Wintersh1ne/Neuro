@@ -75,7 +75,7 @@ while True:
         except:
             g.popup("Check all parametres. They must be digitals for sure!")
 
-    if event == 'count':        #дописать
+    if event == 'count':
         try:
             w = [int(layout_3[1][3].get()), int(layout_3[1][5].get()), int(layout_3[2][3].get()), int(layout_3[2][5].get()), int(layout_3[3][3].get()), int(layout_3[4][3].get())]
             b = [int(layout_3[3][1].get()), int(layout_3[4][1].get()), int(layout_3[5][1].get())]

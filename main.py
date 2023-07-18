@@ -41,17 +41,17 @@ window = g.Window('Нейросети', layout_0, finalize=True, icon=ic)
 window_params = g.Window('Нейросети', layout_3, finalize=True, icon=ic, enable_close_attempted_event=True)
 window_params.disappear()
 data = np.array([
-    [-2, -1],  # Alice
-    [25, 6],  # Bob
-    [17, 4],  # Charlie
-    [-15, -6],  # Diana
+    [-2, -1],
+    [25, 6],
+    [17, 4],
+    [-15, -6],
 ])
 
 all_y_trues = np.array([
-    1,  # Alice
-    0,  # Bob
-    0,  # Charlie
-    1,  # Diana
+    1,
+    0,
+    0,
+    1,
 ])
 
 while True:

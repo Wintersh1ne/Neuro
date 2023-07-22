@@ -33,8 +33,8 @@ class OurNeuralNetwork:
         self.w_count_in = w_count_in
         self.w_count = w_count_in * (b_count - 1) + b_count - 1
         self.w = []
-        self.b = []
         self.w = w
+        self.b = []
         self.b = b
         self.h = [0] * (b_count - 1)
         self.d_ypred_d_h = [0] * len(self.h)
@@ -42,6 +42,7 @@ class OurNeuralNetwork:
         self.d_ypred_d_b = 0
         self.d_h_d_w = [0] * len(self.h) * w_count_in
         self.d_h_d_b = [0] * len(self.h)
+        self.o = -1
 
     def feedforward(self, x):
         k = 0
@@ -57,6 +58,7 @@ class OurNeuralNetwork:
             summ += self.w[len(self.w) - len(self.b) + i] * self.h[i]
         o = sigmoid(summ + self.b[-1])
 
+        self.o = o
         return o
 
     def train(self, data, all_y_trues):
@@ -122,3 +124,24 @@ class OurNeuralNetwork:
                     self.w[i] -= learn_rate * d_L_d_ypred * self.d_ypred_d_w[j]
                     j += 1
                 self.b[-1] -= learn_rate * d_L_d_ypred * d_ypred_d_b
+
+    def GetInfo(self):
+        s = ''
+        c = 0
+        for i in self.w:
+            c += 1
+            s = s + 'Вес w' + str(c) + ': ' + str(i) + '\n'
+        c = 0
+        for i in self.h:
+            c += 1
+            s = s + 'Значение b' + str(c) + ' нейрона скрытого слоя: ' + str(i) + '\n'
+        c = 0
+        for i in self.b:
+            c += 1
+            s = s + 'Смещение h' + str(c) + ': ' + str(i) + '\n'
+        if self.o != -1:
+            s = s + 'Значение нейрона вывода о: ' + str(self.o) + '\n'
+        else:
+            s += 'Значение нейрона слоя вывода отсутствует. Произведите рассчёты.'
+
+        return s

@@ -133,5 +133,3 @@ while True:
                 window_info.disappear()
                 window.enable()
                 break
-
-exit(0)
